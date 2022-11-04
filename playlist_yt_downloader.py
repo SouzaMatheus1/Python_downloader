@@ -6,9 +6,10 @@ import glob
 
 def downloader():
     pl = Playlist(entry.get())
+    dire = dir_.get()
     for video in pl.videos:
         ori_video = video.streams.get_highest_resolution()
-        ori_video.download('downloads')
+        ori_video.download(dire)
         title = video.title
         # print(f'Video downloaded: {title}')
     print("Downloaded!")
@@ -16,7 +17,7 @@ def downloader():
     
 def convert():
     mp3_dir = 'C:/Users/supor/OneDrive/Documentos/.mp3'
-    for file in glob.glob("downloads/*.mp4"):
+    for file in glob.glob("C:/Users/supor/OneDrive/Documentos/Git_Repositories/Python_downloader/downloads/*.mp4"):
         print(file)
         videoclip = VideoFileClip(file)
         audioclip = videoclip.audio
@@ -35,7 +36,7 @@ def reencaminhar():
     print('Files transfered!')
     
 window = Tk()
-window.geometry('500x180')
+window.geometry('500x200')
 window.title('YT Downloader')
 window.configure(background='#dde')
 
@@ -45,10 +46,13 @@ text.place(x=210, y=10)
 entry = Entry(window, width=60)
 entry.place(x=80,y=50)
 
+dir_ = Entry(window, width=60)
+dir_.place(x=80,y=80)
+
 download = Button(window, text="Download", command=downloader)
-download.place(x=220,y=90)
+download.place(x=220,y=110)
 
 foward = Button(window, text="Foward", command=reencaminhar)
-foward.place(x=227,y=130)
+foward.place(x=227,y=140)
 
 window.mainloop()

@@ -6,12 +6,14 @@ import glob
 
 def downloader():
     pl = Playlist(entry.get())
-    dire = dir_.get()
     for video in pl.videos:
-        ori_video = video.streams.get_highest_resolution()
-        ori_video.download(dire)
-        title = video.title
-        # print(f'Video downloaded: {title}')
+        try:
+            ori_video = video.streams.get_highest_resolution()
+            ori_video.download('downloads')
+            title = video.title
+            # print(f'Video downloaded: {title}')
+        except:
+            continue
     print("Downloaded!")
     convert()
     
@@ -35,6 +37,7 @@ def reencaminhar():
             os.rename(f"downloads/{file}", mp4_dir + "/" + file)
     print('Files transfered!')
     
+    
 window = Tk()
 window.geometry('500x200')
 window.title('YT Downloader')
@@ -52,7 +55,7 @@ dir_.place(x=80,y=80)
 download = Button(window, text="Download", command=downloader)
 download.place(x=220,y=110)
 
-foward = Button(window, text="Foward", command=reencaminhar)
+foward = Button(window, text="Foward", command=convert)
 foward.place(x=227,y=140)
 
 window.mainloop()

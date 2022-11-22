@@ -23,7 +23,7 @@ def convert():
         print(file)
         videoclip = VideoFileClip(file)
         audioclip = videoclip.audio
-        audioclip.write_audiofile(file[:-4]+'.mp3')
+        audioclip.write_audiofile(file[:-5]+'.mp3')
         for file2 in os.listdir('downloads'):
             if '.mp3' in file2:
                 os.rename(f"downloads/{file2}", mp3_dir + "/" + file2)
